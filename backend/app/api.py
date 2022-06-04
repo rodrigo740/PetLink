@@ -3,9 +3,20 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi import Depends, FastAPI, HTTPException, status
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from pydantic import BaseModel
+from databases import Database
 
 app = FastAPI()
+database = Database("sqlite:///test.db")
 
+
+@app.on_event("startup")
+async def database_connect():
+    await database.connect()
+
+
+@app.on_event("shutdown")
+async def database_disconnect():
+    await database.disconnect()
 
 origins = [
     "http://localhost:3000",
@@ -42,8 +53,6 @@ fake_users_db = {
         "disabled": True,
     },
 }
-
-app = FastAPI()
 
 
 def fake_hash_password(password: str):
