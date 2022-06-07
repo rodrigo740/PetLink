@@ -1,27 +1,22 @@
 import json
+from databases import Database
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi import Depends, FastAPI, HTTPException, status
+from fastapi import Depends, FastAPI, HTTPException, status, Request
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from pydantic import BaseModel
-from databases import Database
+from sqlalchemy.orm import Session
+
+from . import crud, models, schemas
+from .database import SessionLocal, engine
+
+database = Database("sqlite:///test3.db")
+
+models.Base.metadata.create_all(bind=engine)
+
 
 app = FastAPI()
-database = Database("sqlite:///test.db")
 
-
-@app.on_event("startup")
-async def database_connect():
-    await database.connect()
-
-
-@app.on_event("shutdown")
-async def database_disconnect():
-    await database.disconnect()
-
-origins = [
-    "http://localhost:3000",
-    "localhost:3000"
-]
+origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
@@ -32,9 +27,47 @@ app.add_middleware(
 )
 
 
+@app.on_event("startup")
+async def database_connect():
+    await database.connect()
+    await database.execute("""CREATE TABLE IF NOT EXISTS Client (
+	id TEXT PRIMARY KEY,
+	userName TEXT NOT NULL,
+	address TEXT NOT NULL,
+	email TEXT NOT NULL UNIQUE,
+	name TEXT NOT NULL,
+	birthday TEXT NOT NULL,
+	hashed_password TEXT NOT NULL,
+	contact TEXT NOT NULL
+);""")
+
+
+@app.on_event("shutdown")
+async def database_disconnect():
+    await database.disconnect()
+
+
 @app.get("/", tags=["root"])
 async def read_root() -> dict:
     return {"message": "Hello World!"}
+
+
+@app.post("/reg_client/")
+async def reg_client(info: Request):
+    req_info = await info.json()
+    print(str(req_info["email"]))
+    query = "INSERT INTO Client (userName,address,email,name,birthday,hashed_password,contact) \
+    VALUES(\"" + req_info["userName"] + "\",\"" + str(req_info["address"]) + "\",\"" + str(req_info["email"]) +\
+        "\",\"" + str(req_info["name"]) + "\",\"" + str(req_info["Birthday"]) + \
+            "\",\"" + str(req_info["pass"]) + \
+        "\",\"" + str(req_info["contact"]) + "\");"
+    print(query)
+
+    await database.execute(query)
+    query2 = "SELECT * FROM Client"
+    results = await database.execute(query=query2)
+
+    return results
 
 
 fake_users_db = {
