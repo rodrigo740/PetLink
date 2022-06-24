@@ -1,0 +1,22 @@
+body {
+  background: url("../../assets/img/dog_gradient.jpg?h=673a62dfc89272057340ed2e837f1e93") center / cover no-repeat, rgba(255,255,255,0);
+  width: 100%;
+  height: 100%;
+}
+
+.navbar-brand {
+  background: url("../../assets/img/BrandLogo.png?h=8f7dcce65878baeb0243b86137484f6d") center / cover no-repeat;
+  width: 150px;
+  height: 34px;
+}
+
+#products {
+  align-items: center;
+  margin-left: 54px;
+}
+
+#products {
+  align-items: end;
+  justify-content: right;
+}
+
