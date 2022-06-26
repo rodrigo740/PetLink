@@ -38,92 +38,95 @@
         </nav>
     </header>
     <section>
-        <p style="font-size: 40px;font-weight: 400;"><strong><span style="text-decoration: underline;">Dados do Cliente</span></strong></p>
+        <p style="font-size:40px; font-weight:400;"><strong><span style="text-decoration: underline;">Dados do Cliente</span></strong></p>
         <div class="container d-flex d-xl-flex flex-column flex-grow-1 flex-shrink-1 flex-fill justify-content-center align-items-stretch align-content-stretch align-self-center flex-wrap justify-content-xl-center" style="width: inherit;background-color: bisque;margin-bottom: 50px;">
-            <fieldset class="d-flex flex-column justify-content-xl-center align-items-xl-start">
-                <div class="row" style="height: 30px;width: 100%;margin: 0px;">
+            {% for client in clients_data %}
+            <field
+            set class="d-flex flex-column justify-content-xl-center align-items-xl-start">
+                <div class="row" style="height:30px; width:100%; margin:5px 0px 5px 0px;">
                     <div class="col" style="width: inherit;height: inherit;">
-                        <p style="font-size: 20px;"><strong>Nome:</strong></p>
+                        <p style="font-size:25px; margin:0px; padding:0px;"><strong>Nome:</strong></p>
                     </div>
                 </div>
-                <div class="row" style="width: 100%;height: 40px;">
-                    <div class="col" style="width: inherit;height: inherit;">
-                        <p>Manuel</p>
-                    </div>
-                </div>
-            </fieldset>
-            <fieldset class="d-flex flex-column justify-content-xl-center align-items-xl-start">
-                <div class="row" style="height: 30px;width: 100%;margin: 0px;">
-                    <div class="col" style="width: inherit;height: inherit;">
-                        <p style="font-size: 20px;"><strong>Apelidos:</strong></p>
-                    </div>
-                </div>
-                <div class="row" style="width: 100%;height: 40px;">
-                    <div class="col" style="width: inherit;height: inherit;">
-                        <p>Santos</p>
+                <div style="width:100%; height:40px;">
+                    <div style="width: inherit; margin:0px; padding:5px;">
+                        <p style="font-size:25px; padding:0px; margin:0px;"> {{client.nome}} </p>
                     </div>
                 </div>
             </fieldset>
             <fieldset class="d-flex flex-column justify-content-xl-center align-items-xl-start">
-                <div class="row" style="height: 30px;width: 100%;margin: 0px;">
+                <div class="row" style="height:30px; width:100%; margin:5px 0px 5px 0px;">
                     <div class="col" style="width: inherit;height: inherit;">
-                        <p style="font-size: 20px;"><strong>Data de Nascimento:</strong></p>
+                        <p style="font-size:25px; margin:0px; padding:0px;"><strong>Apelidos:</strong></p>
                     </div>
                 </div>
-                <div class="row" style="width: 100%;height: 40px;">
-                    <div class="col" style="width: inherit;height: inherit;">
-                        <p>23/06/2022</p>
-                    </div>
-                </div>
-            </fieldset>
-            <fieldset class="d-flex flex-column justify-content-xl-center align-items-xl-start">
-                <div class="row" style="height: 30px;width: 100%;margin: 0px;">
-                    <div class="col" style="width: inherit;height: inherit;">
-                        <p style="font-size: 20px;"><strong>Morada:</strong></p>
-                    </div>
-                </div>
-                <div class="row" style="width: 100%;height: 40px;">
-                    <div class="col" style="width: inherit;height: inherit;">
-                        <p>Rua de trás</p>
+                <div class="row" style="width:100%; height:40px;">
+                    <div class="col" style="width:inherit; height:inherit;">
+                        <p style="font-size:25px; padding:0px; margin:0px;">{{client.apelidos}}</p>
                     </div>
                 </div>
             </fieldset>
             <fieldset class="d-flex flex-column justify-content-xl-center align-items-xl-start">
-                <div class="row" style="height: 30px;width: 100%;margin: 0px;">
+                <div class="row" style="height:30px; width:100%; margin:5px 0px 5px 0px;">
                     <div class="col" style="width: inherit;height: inherit;">
-                        <p style="font-size: 20px;"><strong>Código postal:</strong></p>
+                        <p style="font-size:25px; margin:0px; padding:0px;"><strong>Data de Nascimento:</strong></p>
+                    </div>
+                </div>
+                <div class="row" style="width: 100%;height: 40px;">
+                    <div class="col" style="width: inherit;height: inherit;">
+                        <p style="font-size:25px; padding:0px; margin:0px;">{{client.data_nascimento}}</p>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="d-flex flex-column justify-content-xl-center align-items-xl-start">
+                <div class="row" style="height:30px; width:100%; margin:5px 0px 5px 0px;">
+                    <div class="col" style="width: inherit;height: inherit;">
+                        <p style="font-size:25px; padding:0px; margin:0px;"><strong>Morada:</strong></p>
+                    </div>
+                </div>
+                <div class="row" style="width: 100%;height: 40px;">
+                    <div class="col" style="width: inherit;height: inherit;">
+                        <p style="font-size:25px; margin:0px; padding:0px;">{{client.morada}}</p>
+                    </div>
+                </div>
+            </fieldset>
+            <fieldset class="d-flex flex-column justify-content-xl-center align-items-xl-start">
+                <div class="row" style="height:30px; width:100%; margin:5px 0px 5px 0px;">
+                    <div class="col" style="width: inherit;height: inherit;">
+                        <p style="font-size:25px; padding:0px; margin:0px;"><strong>Código postal:</strong></p>
                     </div>
                 </div>
                 <div class="row" style="width: 100%;height: 40px;">
                     <div class="col d-xl-flex justify-content-xl-start align-items-xl-center" style="width: inherit;height: inherit;">
-                        <p>3080-000</p>
+                        <p style="font-size:25px; margin:0px; padding:0px;" >{{client.codigo_postal}}</p>
                     </div>
                 </div>
             </fieldset>
             <fieldset class="d-flex flex-column justify-content-xl-center align-items-xl-start">
-                <div class="row" style="height: 30px;width: 100%;margin: 0px;">
+                <div class="row" style="height:30px; width:100%; margin:5px 0px 5px 0px;">
                     <div class="col" style="width: inherit;height: inherit;">
-                        <p style="font-size: 20px;"><strong>Nº Contribuinte:</strong></p>
+                        <p style="font-size:25px; margin:0px; padding:0px;"><strong>Nº Contribuinte:</strong></p>
                     </div>
                 </div>
                 <div class="row" style="width: 100%;height: 40px;">
                     <div class="col" style="width: inherit;height: inherit;">
-                        <p>1234</p>
+                        <p style="font-size:25px; margin:0px; padding:0px;">{{client.contribuinte}}</p>
                     </div>
                 </div>
             </fieldset>
             <fieldset class="d-flex flex-column justify-content-xl-center align-items-xl-start">
-                <div class="row" style="height: 30px;width: 100%;margin: 0px;">
+                <div class="row" style="height:30px; width:100%; margin:5px 0px 5px 0px;">
                     <div class="col" style="width: inherit;height: inherit;">
-                        <p style="font-size: 20px;"><strong>TIPO DE CONTA:</strong></p>
+                        <p style="font-size:25px; padding:0px; margin:0px;"><strong>Tipo de Conta:</strong></p>
                     </div>
                 </div>
                 <div class="row" style="width: 100%;height: 40px;">
                     <div class="col" style="width: inherit;height: inherit;">
-                        <p>Cliente (Bronze)</p>
+                        <p style="font-size:25px; padding:0px; margin:0px;">{{client.tipo_conta}}</p>
                     </div>
                 </div>
             </fieldset>
+            {% endfor %}
         </div>
     </section><!-- Start: Footer Basic -->
     <footer class="text-center d-flex justify-content-center align-items-center align-content-center align-self-end flex-wrap order-last">

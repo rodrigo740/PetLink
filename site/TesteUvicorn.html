@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>TesteUvicorn</title>
+
+    <script src="https://unpkg.com/htmx.org@1.6.1"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body>
+    <div class="mx-4">
+        <p class="text-2x1 font-bold mb-4">Dados do Cliente:</p>
+        <table class="min-w-[50%] mb-4">
+            <thead class="border-b text-lg">
+                <tr>
+                    <th class="border">Nome:</th>
+                    <th class="border">Apelidos:</th>
+                    <th class="border">Data Nascimento:</th>
+                </tr>
+            </thead>
+            <tbody class="text-center text-sm">
+                {%for client in clients_data %}
+                <tr>
+                    <td class="border">{{client.nome}}</client></td>
+                    <td class="border">{{client.apelidos}}</td>
+                    <td class="border">{{client.data_nascimento}}</td>
+                </tr>
+                {% endfor %}                
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
